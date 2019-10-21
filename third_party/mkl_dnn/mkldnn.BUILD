@@ -59,6 +59,7 @@ cc_library(
         "-fexceptions",
         "-DUSE_MKL",
         "-DUSE_CBLAS",
+        "-DMKLDNN_THR=MKLDNN_THR_TBB",  # Enable TBB for threading.
     ] + if_mkl_open_source_only([
         "-UUSE_MKL",
         "-UUSE_CBLAS",
@@ -85,6 +86,7 @@ cc_library(
         "@org_tensorflow//tensorflow:linux_x86_64": [
             "@mkl_linux//:mkl_headers",
             "@mkl_linux//:mkl_libs_linux",
+            "@tbb",
         ],
         "@org_tensorflow//tensorflow:macos": [
             "@mkl_darwin//:mkl_headers",
